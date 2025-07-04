@@ -10,6 +10,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 
+STRIPE_SECRET_KEY=sk_test_51RZH7FIM79lgv6eSreHh7zH9XXXXX
+
 def home(request):
     food_items = FoodItem.objects.all()
     food_item = food_items.filter(id=1).first()  # Safely get the first matching object
