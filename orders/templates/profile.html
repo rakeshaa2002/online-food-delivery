@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Profile</title>
+</head>
+<body>
+    <h2>Welcome, {{ request.user.username }}!</h2>
+    <img src="{{ profile.image.url }}" alt="Profile Image" width="100" height="100" style="border-radius:50%;">
+    <p>Email: {{ request.user.email }}</p>
+<form method="post" action="{% url 'logout' %}">
+    {% csrf_token %}
+    <button type="submit">Logout</button>
+</form>
+
+    <p><a href="{% url 'home' %}">Back to Home</a></p>
+</body>
+</html>

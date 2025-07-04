@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <title>Confirm Order</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link href='https://cdn.boxicons.com/fonts/basic/boxicons.min.css' rel='stylesheet'>
+</head>
+<body style="background: #fff6f6; font-family: 'Segoe UI', Arial, sans-serif;">
+        <header style="background: #f06666; box-shadow: 0 2px 8px rgba(0,0,0,0.05); padding: 20px 0 10px 0;">
+        <div style="display: flex; align-items: center; justify-content: space-between; max-width: 1100px; margin: 0 auto;">
+            <div>
+                <a href="{% url 'home' %}" style="text-decoration: none;"><h1 style="margin: 0; font-size: 2.2rem; color: #222;">Pentagon Bites</h1></a>
+                <p style="margin: 0; color: #221f1f;">Order your favorite food delivered to your doorstep.</p>
+            </div>
+            <div style="display: flex; align-items: center; gap: 10px;">
+                <a href="{% url 'view_cart' %}" title="View Cart">
+                    <button style="background: #f5f5f5; border: none; border-radius: 50%; padding: 12px 16px; cursor: pointer;">
+                        <i class='bx bx-cart' style="font-size: 2rem; color: #222;"></i>
+                    </button>
+                </a>
+                <a href="{% url 'my_orders' %}">
+                    <button style="padding: 10px 20px; font-size: 16px; background: #222; color: #fff; border: none; border-radius: 6px; margin-left: 10px; cursor: pointer;">
+                        My Orders
+                    </button>
+                </a>
+            </div>
+        </div>
+    </header>
+    <div style="max-width: 400px; margin: 60px auto; background: #fff; border-radius: 12px; box-shadow: 0 2px 12px rgba(240,102,102,0.08); padding: 32px 24px;">
+        <h2 style="color:#f06666;">Confirm Order</h2>
+        <p><strong>Delivery Address:</strong></p>
+        <div style="background:#ffe0e0; padding:10px; border-radius:6px;">
+            <strong>Name:</strong> {{ address.name }}<br>
+            <strong>Phone:</strong> {{ address.phone }}<br>
+            <strong>Area:</strong> {{ address.area }}<br>
+            <strong>City:</strong> {{ address.city }}<br>
+            {% if address.landmark %}
+                <strong>Landmark:</strong> {{ address.landmark }}<br>
+            {% endif %}
+            <strong>District:</strong> {{ address.district }}<br>
+            <strong>Zip Code:</strong> {{ address.zipcode }}
+        </div>
+        <p style="margin-top:20px;">Choose Payment Method:</p>
+        <button type="button" onclick="submitOrder('cod')" style="padding:10px 24px; background:#f06666; color:#fff; border:none; border-radius:6px; margin-right:10px; cursor:pointer;">Cash on Delivery</button>
+        <button type="button" onclick="submitOrder('online')" style="padding:10px 24px; background:#f06666; color:#fff; border:none; border-radius:6px; cursor:pointer;">Online Payment</button>
+    </div>
+    <!-- Custom Popup Modal -->
+<div id="custom-popup" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.25); z-index:9999; align-items:center; justify-content:center;">
+    <div style="background:#fff; border-radius:10px; padding:32px 24px; min-width:300px; max-width:90vw; box-shadow:0 4px 24px rgba(0,0,0,0.15); text-align:center; position:relative;">
+        <span id="custom-popup-message" style="font-size:1.1rem; color:#222;"></span>
+        <br><br>
+        <button id="custom-popup-ok" style="padding:8px 28px; background:#f06666; color:#fff; border:none; border-radius:6px; font-size:1rem; cursor:pointer;">OK</button>
+    </div>
+</div>
+    <script src="{% static 'script.js' %}"></script>
+</body>
+</html>
