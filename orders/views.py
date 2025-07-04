@@ -10,7 +10,16 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import login
 
-STRIPE_SECRET_KEY=sk_test_51RZH7FIM79lgv6eSreHh7zH9XXXXX
+# STRIPE_SECRET_KEY=sk_test_51RZH7FIM79lgv6eSreHh7zH9XXXXX
+import stripe
+import os
+from dotenv import load_dotenv
+
+load_dotenv()  # optional, for local testing
+
+stripe.api_key = os.getenv("STRIPE_SECRET_KEY")
+
+
 
 def home(request):
     food_items = FoodItem.objects.all()
